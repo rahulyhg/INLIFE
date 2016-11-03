@@ -65,6 +65,23 @@ class Register extends MY_Controller {
         }
     }
 
+    public function register_simple_user() {
+
+        $this->load->library('../controllers/inLife_Services/user_services');
+
+
+        $data_user = $this->input->post('data_user');
+        $event = $this->input->post('event');
+        $data_user_array = $this->user_services->register_simple_user($data_user, $event);
+
+        if ($data_user_array != 0) {
+            $register_status = $this->user_services->send_register_email($data_user_array["id"], $data_user_array["token"], $data_user["mail"]);
+            echo $register_status;
+        } else {
+            echo 0;
+        }
+    }
+
     public function activate_acount() {
 
         $this->load->library('../controllers/inLife_Services/user_services');

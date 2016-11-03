@@ -322,6 +322,20 @@ class User_services extends MY_Controller {
         }
     }
 
+    public function register_simple_user($data_user, $event) {
+
+        $this->load->library('../controllers/inLife_DAO/user_transactional');
+
+            $data_user_array = $this->user_transactional->register_simple_user($data_user);
+
+        if ($data_user_array != 0) {
+            $this->user_transactional->register_registerform_event($event, $data_user_array["id"]);
+            return $data_user_array;
+        } else {
+            return 0;
+        }
+    }
+
     public function register_n_event($idEvent, $id_user) {
 
         $this->user_transactional->register_to_inlife_event($idEvent, $id_user);

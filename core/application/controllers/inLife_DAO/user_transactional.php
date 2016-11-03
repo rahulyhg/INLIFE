@@ -546,8 +546,8 @@ class User_transactional extends MY_Controller {
 
         $is_pago_persona = 0;
 
-       
-          echo json_encode($pago_persona_persona);
+
+        echo json_encode($pago_persona_persona);
     }
 
     public function get_resources() {
@@ -580,12 +580,12 @@ class User_transactional extends MY_Controller {
                         . " FROM pagos_personas "
                         . " WHERE id_persona= " . $id_persona);
 
-              
+
 
 
                 $arrayReturn = array(
                     "status" => "SUCCESS",
-                    "pago_persona" =>  json_encode($pago_persona_persona),
+                    "pago_persona" => json_encode($pago_persona_persona),
                     "is_user_activate" => 1,
                     "id" => $id_persona,
                     "fecha_nacimiento" => $person[0]["fecha_nacimiento"],
@@ -708,6 +708,52 @@ class User_transactional extends MY_Controller {
                     "'" . $data_user["lng"] . "'," .
                     "'" . $data_user["phone1"] . "'," .
                     "'" . $data_user["phone2"] . "'" .
+                    ")" .
+                    "");
+
+
+
+            $this->Cam->sqlInsert("INSERT INTO pagos_personas " .
+                    "(id_persona,mapa_del_ser,reto_primordial ) " .
+                    "VALUES (" .
+                    "" . $id_user . ", " .
+                    "0, " .
+                    "0" .
+                    ")" .
+                    "");
+
+
+            $data_user_return = array(
+                "id" => $id_user,
+                "token" => $token_registro
+            );
+
+            return $data_user_return;
+        } else {
+            return 0;
+        }
+    }
+
+    public function register_simple_user($data_user) {
+
+        $is_mail_registered = $this->Cam->sql(" SELECT nombre "
+                . " FROM personas "
+                . " WHERE correo_electronico='" . $data_user["mail"] . "' ");
+
+        if (sizeof($is_mail_registered) == 0) {
+
+           // $token_registro = uniqid()."_".uniqid();
+            $token_registro = -1;
+
+            $id_user = $this->Cam->sqlInsertReturnId("INSERT INTO personas " .
+                    "(nombre,apellido,correo_electronico, "
+                    . " password,token_registro) " .
+                    "VALUES (" .
+                    "'" . $data_user["nombre"] . "', " .
+                    "'" . $data_user["apellido"] . "', " .
+                    "'" . $data_user["mail"] . "', " .
+                    "'" . $data_user["password"] . "', " .
+                    "'" . $token_registro . "'" .
                     ")" .
                     "");
 

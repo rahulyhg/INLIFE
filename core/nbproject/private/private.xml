@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/INLIFE/core/application/controllers/inLife_DAO/user_transactional.php</file>
+            <file>file:/C:/xampp/htdocs/INLIFE/core/application/controllers/register.php</file>
+            <file>file:/C:/xampp/htdocs/INLIFE/core/</file>
+            <file>file:/C:/xampp/htdocs/INLIFE/core/application/controllers/inLife_Services/user_services.php</file>
+        </group>
     </open-files>
 </project-private>
